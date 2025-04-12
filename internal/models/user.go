@@ -5,4 +5,4 @@ type User struct {
 	Name     string `json:"name"`
 	Email    string `json:"email"`
 	Password string `json:"-"` // "-" means this field won't be included in JSON
-} 
+}

@@ -1,17 +1,27 @@
 package main
 
 import (
+	"demo/internal/handlers"
 	"fmt"
 	"log"
 	"net/http"
 
-	"demo/internal/handlers"
 	"github.com/gin-gonic/gin"
 )
+
+func init() {
+	// Set Gin to release mode
+	// gin.SetMode(gin.ReleaseMode)
+}
 
 func main() {
 	// Create a new Gin router with default middleware
 	router := gin.Default()
+
+	// Configure trusted proxies
+	// For development, we can trust only loopback addresses (127.0.0.1/8)
+	// For production, you should set this to your actual proxy IPs
+	router.SetTrustedProxies([]string{"127.0.0.1"})
 
 	// Health check route
 	router.GET("/ping", func(c *gin.Context) {
@@ -35,4 +45,4 @@ func main() {
 	if err := router.Run(":8080"); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
-} 
+}

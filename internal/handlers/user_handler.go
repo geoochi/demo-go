@@ -1,10 +1,10 @@
 package handlers
 
 import (
+	"demo/internal/models"
 	"net/http"
 	"strconv"
 
-	"demo/internal/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -91,4 +91,4 @@ func DeleteUser(c *gin.Context) {
 
 	delete(users, uint(id))
 	c.JSON(http.StatusOK, gin.H{"message": "User deleted successfully"})
-} 
+}
